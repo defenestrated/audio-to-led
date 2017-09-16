@@ -2,7 +2,7 @@
 	"name" : "note-remapper",
 	"version" : 1,
 	"creationdate" : -706809054,
-	"modificationdate" : -706808871,
+	"modificationdate" : -706554020,
 	"viewrect" : [ 25.0, 70.0, 300.0, 500.0 ],
 	"autoorganize" : 1,
 	"hideprojectwindow" : 0,
@@ -19,6 +19,11 @@
 		}
 ,
 		"code" : 		{
+			"autoroute.js" : 			{
+				"kind" : "javascript",
+				"local" : 1
+			}
+,
 			"lodash.min.js" : 			{
 				"kind" : "javascript",
 				"local" : 1

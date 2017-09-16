@@ -10,7 +10,9 @@ modify a route object to remap incoming midi notes
 inlets = 3
 outlets = 2
 
-var debug = false;
+autowatch = 1
+
+var debug = true;
 
 var therouter
 // var t1 = this.patcher.newdefault(10,750, "t", "b i")
@@ -64,12 +66,15 @@ function addinput(note_to_route) {
 
 function setoffset(val) {
   offset = val
-  logger("output starting note:", offset)
-  for (var i = 0; i < output_prepends.length; i++) {
-    var pre = output_prepends[i]
-    // logger(pre)
-    pre.message("set", offset)
-  }
+  logger("starting note:", offset)
+  _(output_prepends).each(function(el, ix) {
+    logger(ix)
+    el.message("set", offset + ix)
+    // logger(el.arguments[0])
+  })
+
+  // for (var i = 0; i < output_prepends.length; i++) {
+  // }
 }
 
 function msg_int(int_value) {
