@@ -12,7 +12,7 @@ outlets = 2
 
 autowatch = 1
 
-var debug = true;
+var debug = false;
 
 var therouter
 // var t1 = this.patcher.newdefault(10,750, "t", "b i")
