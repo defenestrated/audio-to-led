@@ -27,6 +27,14 @@ var shuffle = false
 
 init()
 
+function debug(dvalue) {
+  debug = dvalue;
+  var on_off = (debug) ? "on" : "off"
+  post()
+  post("debug mode " + on_off)
+  post()
+}
+
 function logger(msg) {
   if (debug) {
     post()

@@ -2,7 +2,7 @@
 	"name" : "note-remapper",
 	"version" : 1,
 	"creationdate" : -706809054,
-	"modificationdate" : -706487404,
+	"modificationdate" : -706214661,
 	"viewrect" : [ 25.0, 45.0, 300.0, 500.0 ],
 	"autoorganize" : 1,
 	"hideprojectwindow" : 0,
@@ -14,6 +14,16 @@
 				"kind" : "patcher",
 				"local" : 1,
 				"toplevel" : 1
+			}
+,
+			"sg.coll-unique.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"sg.midipicker.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
 			}
 
 		}

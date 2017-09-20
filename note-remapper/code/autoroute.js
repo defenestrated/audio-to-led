@@ -29,6 +29,14 @@ var shuffle = false
 
 init()
 
+function debugmode(dvalue) {
+  debug = dvalue;
+  var on_off = (debug) ? "on" : "off"
+  post()
+  post("debug mode " + on_off)
+  post()
+}
+
 function logger(msg) {
   if (debug) {
     post()
@@ -124,12 +132,13 @@ function map(shuffle) {
       outs = outputs.length,
       ratio
   // post()
+  logger("mapping...")
   logger(routes.length, outputs.length)
 
   var group_assign = function(position) {
     var pos = position/ratio
     var group = Math.floor(pos)
-    logger("assigning", position, pos, group)
+    // logger("assigning", position, pos, group)
     return group
   }
 
@@ -137,7 +146,7 @@ function map(shuffle) {
     var real_outs = (shuffle) ? _.shuffle(outputs) : outputs
 
     var howmany = (more_ins_than_outs) ? ins : outs
-    logger("times", howmany)
+    // logger("times", howmany)
     _.times(howmany, function(i) {
 // /      var router_outlet, number_box, which_number
 
