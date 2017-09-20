@@ -75,14 +75,14 @@ function addinput(note_to_route) {
 function setoffset(val) {
   offset = val
   logger("starting note:", offset)
-  _(output_prepends).each(function(el, ix) {
-    logger(ix)
-    el.message("set", offset + ix)
-    // logger(el.arguments[0])
-  })
-
-  // for (var i = 0; i < output_prepends.length; i++) {
-  // }
+  for (var i = 0; i < output_prepends.length; i++) {
+    logger(i)
+    output_prepends[i].message("set", offset + i)
+  }
+  // _(output_prepends).each(function(el, ix) {
+    // logger(ix)
+    // el.message("set", offset + ix)
+  // })
 }
 
 function msg_int(int_value) {
@@ -126,6 +126,26 @@ function setoutputs(number_of_outputs) {
   map(shuffle)
 }
 
+function shuffler(incoming_arr) {
+  var arr_copy = incoming_arr.slice()
+  var m = arr_copy.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = arr_copy[m];
+    arr_copy[m] = arr_copy[i];
+    arr_copy[i] = t;
+  }
+
+  return arr_copy;
+}
+
+
 function map(shuffle) {
   var cmp = this
   var ins = routes.length,
@@ -143,12 +163,13 @@ function map(shuffle) {
   }
 
   var patchem = function(more_ins_than_outs) {
-    var real_outs = (shuffle) ? _.shuffle(outputs) : outputs
+    // var real_outs = (shuffle) ? _.shuffle(outputs) : outputs
+    var real_outs = (shuffle) ? shuffler(outputs) : outputs
 
     var howmany = (more_ins_than_outs) ? ins : outs
     // logger("times", howmany)
-    _.times(howmany, function(i) {
-// /      var router_outlet, number_box, which_number
+    // _.times(howmany, function(i) {
+    for (var i = 0; i < howmany; i++) {
 
       var router_outlet = (more_ins_than_outs) ? i : group_assign(i)
       var number_box = (more_ins_than_outs) ? real_outs[group_assign(i)] : real_outs[i]
@@ -157,7 +178,8 @@ function map(shuffle) {
       // logger("patching", router_outlet, which_number)
 
       cmp.patcher.connect(therouter, router_outlet, number_box, 0)
-    })
+      // })
+    }
   }
 
   if (ins > 0 && outs > 0) {
@@ -177,11 +199,18 @@ function map(shuffle) {
 
 function disconnect() {
   var cmp = this;
-  _(outputs).each(function(out, ix) {
-    _(routes).each(function(route, ixx) {
-      cmp.patcher.disconnect(therouter, ixx, out, 0);
-    })
-  })
+
+  for (var i = 0; i < outputs.length; i++) {
+    for (var r = 0; r < routes.length; r++) {
+      cmp.patcher.disconnect(therouter, r, outputs[i], 0)
+    }
+  }
+
+  // _(outputs).each(function(out, ix) {
+    // _(routes).each(function(route, ixx) {
+      // cmp.patcher.disconnect(therouter, ixx, out, 0);
+    // })
+  // })
 }
 
 function randomize() {
