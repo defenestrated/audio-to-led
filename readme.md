@@ -1,5 +1,26 @@
 # tool for remapping notes in a midi sequence
 
+## installation / updating
+### installing:
+1. open **terminal** on a mac, or **[git bash](https://git-for-windows.github.io/)** on windows
+2. do the following (enter after each line):
+``` shell
+cd path/to/project
+# replace "path/to/project" with the path to where you want this to live
+git clone https://github.com/defenestrated/audio-to-led.git
+open audio-to-led
+```
+
+### updating:
+1. open **terminal** on a mac, or **[git bash](https://git-for-windows.github.io/)** on windows
+2. do the following (enter after each line):
+``` shell
+cd path/to/project
+git pull
+open audio-to-led
+```
+
+
 ## test launch instructions:
 ### 1. fire up the live set:
 - in the __ableton__ folder, open __audio-to-midi-test.als__
